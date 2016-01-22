@@ -165,6 +165,13 @@ patch('/clients/:id') do
   redirect("/clients")
 end
 
+delete('/clients/:id') do
+  id = params[:id].to_i()
+  client = Client.find(id)
+  client.delete()
+  redirect('/clients')
+end
+
 get('/clients/:id/edit') do
   @id = params[:id].to_i()
   @client = Client.find(@id)

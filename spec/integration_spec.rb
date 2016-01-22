@@ -21,9 +21,9 @@ end
 
 describe('viewing a stylist', {:type => :feature}) do
   it('allows the user to view a stylist database entry') do
-    test_stylst = create_test_stylist()
-    test_stylst.save()
-    test_stylist_id = test_stylst.id().to_s()
+    test_stylist = create_test_stylist()
+    test_stylist.save()
+    test_stylist_id = test_stylist.id().to_s()
     test_client = create_test_client()
     test_client.save()
     test_client.add_stylist(test_stylist_id)
@@ -38,9 +38,9 @@ end
 
 describe('updating a stylist', {:type => :feature}) do
   it('allows the user to update a stylist database entry') do
-    test_stylst = create_test_stylist()
-    test_stylst.save()
-    test_stylist_id = test_stylst.id().to_s()
+    test_stylist = create_test_stylist()
+    test_stylist.save()
+    test_stylist_id = test_stylist.id().to_s()
     visit('/stylists')
     click_link("update_#{test_stylist_id}")
     fill_in('first_name', :with => 'Jamie')
@@ -55,11 +55,11 @@ end
 
 describe('deleting a stylist', {:type => :feature}) do
   it('allows the user to delete a stylist database entry') do
-    test_stylst = create_test_stylist()
-    test_stylst.save()
-    test_stylist_id = test_stylst.id().to_s()
-    second_stylst = create_second_stylist()
-    second_stylst.save()
+    test_stylist = create_test_stylist()
+    test_stylist.save()
+    test_stylist_id = test_stylist.id().to_s()
+    second_stylist = create_second_stylist()
+    second_stylist.save()
     visit('/stylists')
     click_link("update_#{test_stylist_id}")
     click_on('Delete')
@@ -100,5 +100,20 @@ describe('updating a client', {:type => :feature}) do
     expect(page).to(have_content('Jamie'))
     expect(page).to(have_content('Styles'))
     expect(page).to(have_content('503-555-4243'))
+  end
+end
+
+describe('deleting a client', {:type => :feature}) do
+  it('allows the user to delete a client database entry') do
+    test_client = create_test_client()
+    test_client.save()
+    test_client_id = test_client.id().to_s()
+    second_client = create_second_client()
+    second_client.save()
+    visit('/clients')
+    click_link("update_#{test_client_id}")
+    click_on('Delete')
+    expect(page).not_to(have_content('Donald'))
+    expect(page).to(have_content('Bernie'))
   end
 end
