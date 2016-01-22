@@ -52,7 +52,13 @@ describe(Stylist) do
 
   describe('#clients') do
     it("returns a list of the stylist's clients") do
-      # TODO
+      test_stylist = create_test_stylist()
+      test_stylist.save()
+      test_client = create_test_client(test_stylist.id())
+      test_client.save()
+      second_client = create_second_client(test_stylist.id())
+      second_client.save()
+      expect(test_stylist.clients()).to(eq([test_client, second_client]))
     end
   end
 end

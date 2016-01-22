@@ -64,4 +64,10 @@ class Stylist
   def ==(another_stylist)
     self.id() == another_stylist.id()
   end
+
+  def clients
+    id = @id.to_i()
+    results = DB.exec("SELECT * FROM clients WHERE stylist_id = #{id};")
+    Client.map_results_to_objects(results)
+  end
 end
