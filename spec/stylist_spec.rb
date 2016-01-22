@@ -18,6 +18,14 @@ describe(Stylist) do
     end
   end
 
+  describe('#save') do
+    it('saves the stylist to the database') do
+      test_stylist = create_test_stylist()
+      test_stylist.save()
+      expect(Stylist.all()).to(eq([test_stylist]))
+    end
+  end
+
   describe('.all') do
     it('returns an empty array at first') do
       expect(Stylist.all()).to(eq([]))

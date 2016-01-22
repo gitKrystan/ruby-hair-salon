@@ -23,19 +23,23 @@ class Stylist
       last_name = result.fetch('last_name')
       phone = result.fetch('phone')
 
-      objects << Customer.new({
+      objects << Stylist.new({
         :id => id,
         :first_name => first_name,
         :last_name => last_name,
         :phone => phone,
         })
     end
-    
+
     objects
   end
 
   def self.all
     results = DB.exec("SELECT * FROM stylists;")
     Stylist.map_results_to_objects(results)
+  end
+
+  def ==(another_stylist)
+    self.id() == another_stylist.id()
   end
 end
