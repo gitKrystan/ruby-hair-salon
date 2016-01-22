@@ -77,4 +77,15 @@ describe(Client) do
       expect(updated_client.stylist()).to(eq(test_stylist))
     end
   end
+
+  describe('#delete') do
+    it('lets you delete a client from the database') do
+      test_client = create_test_client(1)
+      test_client.save()
+      second_client = create_second_client(1)
+      second_client.save()
+      test_client.delete()
+      expect(Client.all()).to(eq([second_client]))
+    end
+  end
 end

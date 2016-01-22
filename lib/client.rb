@@ -87,4 +87,13 @@ class Client
       end
     end
   end
+
+  def delete
+    DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
+  end
+
+  def self.needs_stylist
+    results = DB.exec("SELECT * FROM clients WHERE stylist_id IS NULL ORDER BY last_name;")
+    Client.map_results_to_objects(results)
+  end
 end

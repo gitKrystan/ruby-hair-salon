@@ -81,8 +81,12 @@ describe(Stylist) do
       test_stylist.save()
       second_stylist = create_second_stylist()
       second_stylist.save()
+      test_client = create_test_client(test_stylist.id())
+      test_client.save()
       test_stylist.delete()
+      updated_client = Client.find(test_client.id())
       expect(Stylist.all()).to(eq([second_stylist]))
+      expect(Client.needs_stylist()).to(eq([updated_client]))
     end
   end
 end
