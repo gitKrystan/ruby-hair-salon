@@ -17,4 +17,10 @@ describe(Stylist) do
       expect(julia_stiles.id()).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe('.all') do
+    it('returns an empty array at first') do
+      expect(Stylist.all()).to(eq([]))
+    end
+  end
 end
