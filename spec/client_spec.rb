@@ -60,4 +60,21 @@ describe(Client) do
       expect(test_client.stylist()).to(eq(test_stylist))
     end
   end
+
+  describe('#update') do
+    it('updates a specified attribute of the object') do
+      test_client = create_test_client(1)
+      test_client.save()
+      test_stylist = create_test_stylist()
+      test_stylist.save()
+      test_client.update({
+        :first_name => 'Schmonald',
+        :stylist_id => test_stylist.id(),
+        })
+      updated_client = Client.find(test_client.id())
+      expect(updated_client.first_name()).to(eq('Schmonald'))
+      expect(updated_client.last_name()).to(eq(test_client.last_name()))
+      expect(updated_client.stylist()).to(eq(test_stylist))
+    end
+  end
 end

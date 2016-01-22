@@ -73,4 +73,18 @@ class Client
   def stylist
     Stylist.find(@stylist_id.to_i())
   end
+
+  def update(attributes)
+    @id = self.id()
+    attributes.each() do |attribute|
+      column = attribute[0].to_s()
+      new_value = attribute[1]
+
+      if new_value.is_a?(String)
+        DB.exec("UPDATE clients SET #{column} = '#{new_value}' WHERE id = #{@id}")
+      else
+        DB.exec("UPDATE clients SET #{column} = #{new_value} WHERE id = #{@id}")
+      end
+    end
+  end
 end
