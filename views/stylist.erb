@@ -1,6 +1,10 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4 class="panel-title">Our Talented Stylists</h4>
+    <h4 class="panel-title"><%= @stylist.first_name() %> <%= @stylist.last_name() %> &mdash; <%= @stylist.phone() %></h4>
+  </div>
+
+  <div class="panel-body">
+    <h4>Clients:</h4>
   </div>
 
   <table class="table table-hover">
@@ -8,25 +12,33 @@
       <th>First name</th>
       <th>Last name</th>
       <th>Phone Number</th>
+      <th>Stylist</th>
       <th>Update</th>
     </tr>
 
     <tr>
-      <form action="/stylists" method="post">
+      <form action="/clients" method="post">
           <td><input required type="text" class="form-control" name="first_name" placeholder="First Name"></td>
           <td><input type="text" class="form-control" name="last_name" placeholder="Last Name"></td>
           <td><input type="text" class="form-control" name="phone" placeholder="###-###-####"></td>
+          <td><input type="text" class="form-control" name="stylist_id" value="<%= @stylist.id() %>"></td>
           <td><button type="submit" class="btn btn-default">Add</button></td>
       </form>
     </tr>
 
 
-    <% @stylists.each() do |stylist| %>
+    <% @clients.each() do |client| %>
       <tr>
-        <td><%= stylist.first_name() %></td>
-        <td><%= stylist.last_name() %></td>
-        <td><%= stylist.phone() %></td>
-        <td><a href="/stylists/<%= stylist.id() %>/edit" id="update_<%= stylist.id() %>">Update</a></td>
+        <td><%= client.first_name() %></td>
+        <td><%= client.last_name() %></td>
+        <td><%= client.phone() %></td>
+        <td>
+          <% if client.stylist_id().nil? %>
+            NONE
+          <% else %>
+            <%= client.stylist().first_name() %></td>
+          <% end %>
+        <td></td>
       </tr>
     <% end %>
   </div>
