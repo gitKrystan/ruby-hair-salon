@@ -23,8 +23,10 @@
 
     <% @stylists.each() do |stylist| %>
       <tr>
-        <td><%= stylist.first_name() %></td>
-        <td><%= stylist.last_name() %></td>
+        <td><a href="/stylists/<%= stylist.id() %>">
+          <%= stylist.first_name() %></a></td>
+        <td><a href="/stylists/<%= stylist.id() %>">
+          <%= stylist.last_name() %></a></td>
         <td><%= stylist.phone() %></td>
         <td><a href="/stylists/<%= stylist.id() %>/edit" id="update_<%= stylist.id() %>">Update</a></td>
       </tr>

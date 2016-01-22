@@ -19,6 +19,23 @@ describe('adding a stylist', {:type => :feature}) do
   end
 end
 
+describe('viewing a stylist', {:type => :feature}) do
+  it('allows the user to view a stylist database entry') do
+    test_stylst = create_test_stylist()
+    test_stylst.save()
+    test_stylist_id = test_stylst.id().to_s()
+    test_client = create_test_client()
+    test_client.save()
+    test_client.add_stylist(test_stylist_id)
+    visit('/stylists')
+    click_link('Julia')
+    expect(page).to(have_content('Julia'))
+    expect(page).to(have_content('Stiles'))
+    expect(page).to(have_content('503-555-4242'))
+    expect(page).to(have_content('Donald'))
+  end
+end
+
 describe('updating a stylist', {:type => :feature}) do
   it('allows the user to update a stylist database entry') do
     test_stylst = create_test_stylist()
