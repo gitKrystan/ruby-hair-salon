@@ -71,7 +71,7 @@ describe(Stylist) do
         })
       updated_stylist = Stylist.find(test_stylist.id())
       expect(updated_stylist.first_name()).to(eq('Door'))
-      expect(updated_stylist.last_name()).to(eq('Stiles'))
+      expect(updated_stylist.last_name()).to(eq(test_stylist.last_name()))
     end
   end
 end
