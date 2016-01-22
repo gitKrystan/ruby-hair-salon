@@ -22,7 +22,7 @@ describe('adding a client', {:type => :feature}) do
   it('allows the user to add a new client to the database') do
     create_test_stylist().save()
     visit('/')
-    click_link('Manage Clients')
+    click_link('Clients')
     fill_in('first_name', :with => 'Donald')
     fill_in('last_name', :with => 'Trump')
     fill_in('phone', :with => '503-555-0666')

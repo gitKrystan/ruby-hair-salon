@@ -9,10 +9,15 @@ DB = PG.connect({:dbname => 'hair_salon_test'})
 
 get('/') do
   @stylists = Stylist.sort_by('first_name', 'ASC')
-  erb(:index)
+  erb(:stylists)
 end
 
-post('/') do
+get('/stylists') do
+  @stylists = Stylist.sort_by('first_name', 'ASC')
+  erb(:stylists)
+end
+
+post('/stylists') do
   first_name = params[:first_name]
   last_name = params[:last_name]
 
@@ -29,7 +34,7 @@ post('/') do
     :last_name => last_name,
     :phone => phone,
     }).save()
-  redirect('/')
+  redirect('/stylists')
 end
 
 get('/clients') do
@@ -61,6 +66,6 @@ post('/clients') do
   if stylist_id > 0
     client.add_stylist(stylist_id)
   end
-  
+
   redirect('/clients')
 end
