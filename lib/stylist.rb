@@ -70,4 +70,13 @@ class Stylist
     results = DB.exec("SELECT * FROM clients WHERE stylist_id = #{id};")
     Client.map_results_to_objects(results)
   end
+
+  def update(attributes)
+    @id = self.id()
+    attributes.each() do |attribute|
+      column = attribute[0].to_s()
+      new_value = attribute[1]
+      DB.exec("UPDATE stylists SET #{column} = '#{new_value}' WHERE id = #{@id}")
+    end
+  end
 end
