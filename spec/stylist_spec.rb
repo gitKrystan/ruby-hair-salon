@@ -12,9 +12,9 @@ describe(Stylist) do
 
   describe('#id') do
     it('sets its ID when you save it') do
-      julia_stiles = create_test_stylist()
-      julia_stiles.save()
-      expect(julia_stiles.id()).to(be_an_instance_of(Fixnum))
+      test_stylist = create_test_stylist()
+      test_stylist.save()
+      expect(test_stylist.id()).to(be_an_instance_of(Fixnum))
     end
   end
 
