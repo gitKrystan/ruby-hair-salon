@@ -9,14 +9,28 @@
   </head>
   <body>
     <div class="container">
-      <div class="page-header">
-        <a href="/">
-          <h4>
-            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
-            l337 cu75 0wn3r p0r74l
-          </h4>
-        </a>
-      </div>
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">
+            <p>
+              <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+              l337 cu75 0wn3r p0r74l
+            </p>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/clients" class="pull-right">
+                <p>
+                  Manage Clients
+                </p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <%= yield %>
     </div>
   </body>

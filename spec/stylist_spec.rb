@@ -54,10 +54,12 @@ describe(Stylist) do
     it("returns a list of the stylist's clients") do
       test_stylist = create_test_stylist()
       test_stylist.save()
-      test_client = create_test_client(test_stylist.id())
+      test_client = create_test_client()
       test_client.save()
-      second_client = create_second_client(test_stylist.id())
+      test_client.add_stylist(test_stylist.id())
+      second_client = create_second_client()
       second_client.save()
+      second_client.add_stylist(test_stylist.id())
       expect(test_stylist.clients()).to(eq([test_client, second_client]))
     end
   end
@@ -81,8 +83,9 @@ describe(Stylist) do
       test_stylist.save()
       second_stylist = create_second_stylist()
       second_stylist.save()
-      test_client = create_test_client(test_stylist.id())
+      test_client = create_test_client()
       test_client.save()
+      test_client.add_stylist(test_stylist.id())
       test_stylist.delete()
       updated_client = Client.find(test_client.id())
       expect(Stylist.all()).to(eq([second_stylist]))

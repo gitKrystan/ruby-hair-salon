@@ -10,8 +10,8 @@ class Client
   end
 
   def save
-    result = DB.exec("INSERT INTO clients (first_name, last_name, phone, stylist_id) \
-      VALUES ('#{@first_name}', '#{@last_name}', '#{@phone}', #{@stylist_id}) RETURNING id;")
+    result = DB.exec("INSERT INTO clients (first_name, last_name, phone) \
+      VALUES ('#{@first_name}', '#{@last_name}', '#{@phone}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
 
@@ -95,5 +95,11 @@ class Client
   def self.needs_stylist
     results = DB.exec("SELECT * FROM clients WHERE stylist_id IS NULL ORDER BY last_name;")
     Client.map_results_to_objects(results)
+  end
+
+  def add_stylist(stylist_id)
+    self.update({
+      :stylist_id => stylist_id
+      })
   end
 end
