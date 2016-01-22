@@ -31,4 +31,22 @@ describe(Stylist) do
       expect(Stylist.all()).to(eq([]))
     end
   end
+
+  describe('.sort_by') do
+    it('sorts the stylists by a specified column') do
+      julia_stiles = create_test_stylist()
+      julia_stiles.save()
+      harry_styles = create_second_stylist()
+      harry_styles.save()
+      expect(Stylist.sort_by('last_name', 'ASC')).to(eq([julia_stiles, harry_styles]))
+    end
+  end
+
+  describe('.find') do
+    it('finds a stylist by their id number') do
+      test_stylist = create_test_stylist()
+      test_stylist.save()
+      expect(Stylist.find(test_stylist.id())).to(eq(test_stylist))
+    end
+  end
 end
