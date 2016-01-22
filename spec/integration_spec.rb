@@ -84,3 +84,21 @@ describe('adding a client', {:type => :feature}) do
     expect(page).to(have_content('Julia'))
   end
 end
+
+describe('updating a client', {:type => :feature}) do
+  it('allows the user to edit a client in the database') do
+    create_test_stylist().save()
+    test_client = create_test_client()
+    test_client.save()
+    test_client_id = test_client.id()
+    visit('/clients')
+    click_link("update_#{test_client_id}")
+    fill_in('first_name', :with => 'Jamie')
+    fill_in('last_name', :with => 'Styles')
+    fill_in('phone', :with => '503-555-4243')
+    click_on('Update')
+    expect(page).to(have_content('Jamie'))
+    expect(page).to(have_content('Styles'))
+    expect(page).to(have_content('503-555-4243'))
+  end
+end

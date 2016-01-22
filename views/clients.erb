@@ -39,7 +39,9 @@
           <% else %>
             <%= client.stylist().first_name() %></td>
           <% end %>
-        <td></td>
+          <td><a href="/clients/<%= client.id() %>/edit" id="update_<%= client.id() %>">
+            <button class="btn btn-default btn-xs">Update</button>
+          </a></td>
       </tr>
     <% end %>
   </div>

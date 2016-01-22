@@ -123,3 +123,54 @@ post('/clients') do
 
   redirect('/clients')
 end
+
+patch('/clients/:id') do
+  id = params[:id].to_i()
+  client = Client.find(id)
+
+  first_name = params[:first_name]
+  last_name = params[:last_name]
+  stylist_id = params[:stylist_id].to_i()
+
+  if params[:phone].length() > 0
+    phone = params[:phone]
+  else
+    phone = 'NEED PHONE NUMBER'
+  end
+
+  unless first_name == client.first_name()
+    client.update({
+      :first_name => first_name
+      })
+  end
+
+  unless last_name == client.last_name()
+    client.update({
+      :last_name => last_name
+      })
+  end
+
+  unless phone == client.phone()
+    client.update({
+      :phone => phone
+      })
+  end
+
+  unless stylist_id == client.stylist_id()
+    if stylist_id > 0
+      client.add_stylist(stylist_id)
+    end
+  end
+
+  redirect("/clients")
+end
+
+get('/clients/:id/edit') do
+  @id = params[:id].to_i()
+  @client = Client.find(@id)
+  if @client.stylist_id()
+    @stylist = @client.stylist()
+  end
+  @stylists = Stylist.sort_by('first_name', 'ASC')
+  erb(:client_update)
+end

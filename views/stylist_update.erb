@@ -14,11 +14,9 @@
 
     <form action="/stylists/<%= @stylist.id() %>" method="post">
       <td><button type="submit" class="btn btn-danger" name="_method" value="delete">Delete</button></td>
-    </form>
-    <form action="/stylists/<%= @stylist.id() %>" method="post">
-      <td><input required type="text" class="form-control" name="first_name" placeholder="<%= @stylist.first_name() %>"></td>
-      <td><input type="text" class="form-control" name="last_name" placeholder="<%= @stylist.last_name() %>"></td>
-      <td><input type="text" class="form-control" name="phone" placeholder="<%= @stylist.phone() %>"></td>
+      <td><input type="text" class="form-control" name="first_name" value="<%= @stylist.first_name() %>"></td>
+      <td><input type="text" class="form-control" name="last_name" value="<%= @stylist.last_name() %>"></td>
+      <td><input type="text" class="form-control" name="phone" value="<%= @stylist.phone() %>"></td>
       <td><button type="submit" class="btn btn-warning" name="_method" value="patch">Update</button></td>
     </form>
   </table>
