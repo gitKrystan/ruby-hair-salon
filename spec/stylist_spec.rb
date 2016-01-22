@@ -49,4 +49,10 @@ describe(Stylist) do
       expect(Stylist.find(test_stylist.id())).to(eq(test_stylist))
     end
   end
+
+  describe('#clients') do
+    it("returns a list of the stylist's clients") do
+      # TODO
+    end
+  end
 end
