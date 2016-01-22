@@ -78,6 +78,13 @@ patch('/stylists/:id') do
   redirect("/stylists/#{id}")
 end
 
+delete('/stylists/:id') do
+  id = params[:id].to_i()
+  stylist = Stylist.find(id)
+  stylist.delete()
+  redirect('/stylists')
+end
+
 get('/stylists/:id/edit') do
   @id = params[:id].to_i()
   @stylist = Stylist.find(@id)

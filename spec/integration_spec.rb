@@ -53,6 +53,21 @@ describe('updating a stylist', {:type => :feature}) do
   end
 end
 
+describe('deleting a stylist', {:type => :feature}) do
+  it('allows the user to delete a stylist database entry') do
+    test_stylst = create_test_stylist()
+    test_stylst.save()
+    test_stylist_id = test_stylst.id().to_s()
+    second_stylst = create_second_stylist()
+    second_stylst.save()
+    visit('/stylists')
+    click_link("update_#{test_stylist_id}")
+    click_on('Delete')
+    expect(page).not_to(have_content('Jamie'))
+    expect(page).to(have_content('Harry'))
+  end
+end
+
 describe('adding a client', {:type => :feature}) do
   it('allows the user to add a new client to the database') do
     create_test_stylist().save()
