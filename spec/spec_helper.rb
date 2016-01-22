@@ -30,3 +30,23 @@ def create_second_stylist
     :phone => "503-555-2020",
     })
 end
+
+def create_test_client(stylist_id)
+  Client.new({
+    :id => nil,
+    :first_name => 'Donald',
+    :last_name => 'Trump',
+    :phone => "503-555-0666",
+    :stylist_id => stylist_id,
+    })
+end
+
+def create_second_client(stylist_id)
+  Client.new({
+    :id => nil,
+    :first_name => 'Bernie',
+    :last_name => 'Sanders',
+    :phone => "503-555-0777",
+    :stylist_id => stylist_id,
+    })
+end
