@@ -74,4 +74,15 @@ describe(Stylist) do
       expect(updated_stylist.last_name()).to(eq(test_stylist.last_name()))
     end
   end
+
+  describe('#delete') do
+    it('lets you delete a stylist from the database') do
+      test_stylist = create_test_stylist()
+      test_stylist.save()
+      second_stylist = create_second_stylist()
+      second_stylist.save()
+      test_stylist.delete()
+      expect(Stylist.all()).to(eq([second_stylist]))
+    end
+  end
 end

@@ -79,4 +79,8 @@ class Stylist
       DB.exec("UPDATE stylists SET #{column} = '#{new_value}' WHERE id = #{@id}")
     end
   end
+
+  def delete
+    DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
+  end
 end
