@@ -9,4 +9,12 @@ describe(Stylist) do
       expect(julia_stiles.phone()).to(eq('503-555-4242'))
     end
   end
+
+  describe('#id') do
+    it('sets its ID when you save it') do
+      julia_stiles = create_test_stylist()
+      julia_stiles.save()
+      expect(julia_stiles.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
 end
