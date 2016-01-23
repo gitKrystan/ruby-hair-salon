@@ -27,7 +27,7 @@
           <%= stylist.first_name() %></a></td>
         <td><a href="/stylists/<%= stylist.id() %>">
           <%= stylist.last_name() %></a></td>
-        <td><%= stylist.phone() %></td>
+        <td class="<%= 'warning' if stylist.phone() == "NEED PHONE NUMBER" %>"><%= stylist.phone() %></td>
         <td><a href="/stylists/<%= stylist.id() %>/edit" id="update_<%= stylist.id() %>">
           <button class="btn btn-default btn-xs">Update</button>
         </a></td>

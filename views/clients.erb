@@ -32,8 +32,8 @@
       <tr>
         <td><%= client.first_name() %></td>
         <td><%= client.last_name() %></td>
-        <td><%= client.phone() %></td>
-        <td>
+        <td class="<%= 'warning' if client.phone() == "NEED PHONE NUMBER" %>"><%= client.phone() %></td>
+        <td class="<%= 'warning' if client.stylist_id().nil? %>">
           <% if client.stylist_id().nil? %>
             NONE
           <% else %>

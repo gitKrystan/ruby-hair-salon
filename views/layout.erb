@@ -14,22 +14,22 @@
           <a href="/" class="navbar-brand">
             <p>
               <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
-              l337 cu75 0wn3r p0r74l
+              1337 cu7z pwn3r p0r741
             </p>
           </a>
         </div>
 
-        <div class="collapse navbar-collapse navbar-right">
+        <div class="navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li>
-              <a href="/stylists" class="pull-right">
+            <li class="<%= 'active' if active_page?('stylists') || active_page?('') %>">
+              <a href="/stylists">
                 <p>
                   Stylists
                 </p>
               </a>
             </li>
-            <li>
-              <a href="/clients" class="pull-right">
+            <li class="<%= "active" if active_page?("clients") %>">
+              <a href="/clients">
                 <p>
                   Clients
                 </p>

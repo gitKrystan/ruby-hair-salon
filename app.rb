@@ -181,3 +181,7 @@ get('/clients/:id/edit') do
   @stylists = Stylist.sort_by('first_name', 'ASC')
   erb(:client_update)
 end
+
+def active_page?(path='')
+  request.path_info == '/' + path
+end
